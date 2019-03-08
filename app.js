@@ -1,6 +1,6 @@
 //FETCH = XHR + PROMESAS
 
-let url = 'https://jsonplaceholder.typicode.com/'
+// let url = 'https://jsonplaceholder.typicode.com/'
 
 // fetch(`${url}users`) //retorna una promesa
 // .then(data => console.log(data))
@@ -22,35 +22,35 @@ let url = 'https://jsonplaceholder.typicode.com/'
 
 //ASYNC AWAIT
 
-async function foo(){
-    //fetch().then().catch();
-    let pedido = await fetch();
-    console.log(pedido);
-}
-console.log(foo)
+// async function foo(){
+//     //fetch().then().catch();
+//     let pedido = await fetch();
+//     console.log(pedido);
+// }
+// console.log(foo)
 
 
-async function obtenerComentarios(){
-    let usuarios_response = await fetch(`${url}users`);
-    let usuarios = await usuarios_response.json();
-    console.log(usuarios)
-}
-obtenerComentarios();
+// async function obtenerComentarios(){
+//     let usuarios_response = await fetch(`${url}users`);
+//     let usuarios = await usuarios_response.json();
+//     console.log(usuarios)
+// }
+// obtenerComentarios();
 
 
 
 /*****************************************clase_x */
 
-function ajax(params){
-	let xhr = new XMLHttpRequest
-	xhr.open(params.metodo,params.url)
-	xhr.addEventListener("load",function(){
-		if (xhr.status == 200) {
-			params.success(JSON.parse(xhr.response))
-		}
-	})
-	xhr.send()
-}
+// function ajax(params){
+// 	let xhr = new XMLHttpRequest
+// 	xhr.open(params.metodo,params.url)
+// 	xhr.addEventListener("load",function(){
+// 		if (xhr.status == 200) {
+// 			params.success(JSON.parse(xhr.response))
+// 		}
+// 	})
+// 	xhr.send()
+// }
 /*
 ajax({
 	metodo : "GET",
@@ -118,27 +118,117 @@ imagen
 
 //ASYNC/AWAIT
 
-async function obtenerComentarios(){
-	let usuarios_response = await fetch(`${url}users`)
-	let usuarios = await usuarios_response.json()
-	let usuario_id = usuarios[7].id
-	let posts_response = await fetch (`${url}posts?userId=${usuario_id}`)
-	let posts = await posts_response.json()
+// async function obtenerComentarios(){
+// 	let usuarios_response = await fetch(`${url}users`)
+// 	let usuarios = await usuarios_response.json()
+// 	let usuario_id = usuarios[7].id
+// 	let posts_response = await fetch (`${url}posts?userId=${usuario_id}`)
+// 	let posts = await posts_response.json()
 	
-	// let comments_response = await Promise.all(posts.map(
-    //     async post=> {
-    //         let fetch_comment = await fetch(`${url}comments?postId=${post.id}`)
-    //         let comment = await fetch_comment.json()
-    //         console.log(comment) 
-    //     }))
+// 	// let comments_response = await Promise.all(posts.map(
+//     //     async post=> {
+//     //         let fetch_comment = await fetch(`${url}comments?postId=${post.id}`)
+//     //         let comment = await fetch_comment.json()
+//     //         console.log(comment) 
+//     //     }))
 
-        let comentarios_response = await Promise.all(posts.map(
-            async post => await fetch(`${url}posts?userId=${post_id}`)))
+//         let comentarios_response = await Promise.all(posts.map(
+//             async post => await fetch(`${url}posts?userId=${post_id}`)))
 
-        let comentarios = await Promise.all(comentarios_response.map(async response => await response.json()))
+//         let comentarios = await Promise.all(comentarios_response.map(async response => await response.json()))
     
-        console.log(comentarios)
-}
+//         console.log(comentarios)
+// }
 
-obtenerComentarios()
+// obtenerComentarios()
 
+
+
+
+/**NODE**********************************/
+
+
+//modulos
+
+//app.js
+// (function(exports, /*otras...*/){
+
+// })()
+
+
+//incluir modulos
+
+// require('NOMBRE DEL MODULO')    //local - sincronica - top level , no se puede incluir en if, etc. almacena los modulos en buffers
+
+
+//exportar info de un modulo
+/*
+module.exports = {}
+module.exports.a = 1 // module.exports = { a: 1 }
+exports.a = 1
+exports = a //NO SE PUEDE PORQUELA VARIABLE EXPORTS ES LOCAL DEL MODULO ENTONCES PISARLA CON OTRO VALOR IMPLICA QUE LA REEMPLAZAMOS CON LA VARIABLE A
+*/
+/*Buffer - Stream - EventEmitter(idem addEventListener en front*/
+
+
+    
+
+/********
+(DESTRUCTURING)
+
+
+let arr = [1,2,3]
+let uno = arr[0]
+let dos = arr[1]
+let tres = arr[2]
+
+--> igual a:
+
+let {uno, dos, tres} = arr
+
+---------------*----------
+
+
+
+let obj ={x:1, y:2}
+let x = obj.x
+let y = obj.y
+
+--> igual a:
+
+let {x:x, y:x} = obj   --> igual a:    {x, y} = obj  (PROPERTY SHORTHAND)
+
+*/
+
+
+//EVENT EMITTER
+
+// const events = require ('events');
+
+// const {EventEmitter} = events   //let EventEmitter = events.EventEmitter 
+
+// let mi_variable = new EventEmitter()
+
+// //suscribirme a un evento:
+
+// mi_variable.on('click', a=>{
+//     setImmediate(() => {console.log(('Me hicieron click'))});
+//     console.log(a);
+//     //process.nextTick(()=>console.log('Next tick'))
+// })
+
+// //disparar un evento:
+
+// mi_variable.emit('click', 1)
+
+// //Buffers
+// //
+
+// //Stream
+// //transicion de datos de un lugar a otro
+
+
+
+let buffer = new Buffer('hola')
+
+console.log(buffer)
